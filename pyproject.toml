@@ -1,0 +1,20 @@
+[project]
+name = "pub-ready-plots"
+version = "0.1.0"
+description = "Easy publication-ready matplotlib plots for ML papers and posters."
+authors = [{ name = "Agustinus Kristiadi", email = "agustinus@kristia.de" }]
+dependencies = ["matplotlib>=3.9.0"]
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
