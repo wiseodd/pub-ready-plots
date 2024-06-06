@@ -11,6 +11,27 @@ advocate for the latter ([proof](https://agustinus.kristia.de/techblog/2022/05/0
 > [!NOTE]
 > Of course I still use TikZ whenever possible (e.g. Fig. 1 in a paper, diagrams, etc.)
 
+## Examples
+
+**Left:** ICML (letter size), single-column layout. **Right:** A0 landscape poster, 3-column layout.
+
+<div align="center">
+    <img src="imgs/example_paper.png" width="40%"> &nbsp &nbsp &nbsp &nbsp <img src="imgs/example_poster.png" width="43.7%">
+</div>
+
+<br />
+
+```diff
+from pub_ready_plots import get_mpl_rcParams
+
+rc_params, fig_width_in, fig_height_in = get_mpl_rcParams(
+    width=1,
+    height=0.15,
+-   layout="icml",
++   layout="poster-landscape",
+)
+```
+
 ## Installation
 
 Still with me? Still want to use this library? Here's how:
