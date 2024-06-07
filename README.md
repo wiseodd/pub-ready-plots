@@ -1,6 +1,6 @@
 # Agustinus' _Very_ Opiniated Publication-Ready Plotting Library
 
-I love TikZ. I love [tikzplotlib](https://github.com/nschloe/tikzplotlib). I've been an
+I love TikZ (btw). I love [tikzplotlib](https://github.com/nschloe/tikzplotlib). I've been an
 advocate for the latter ([proof](https://agustinus.kristia.de/techblog/2022/05/01/plotting/)). However, tikzplotlib is [as good as dead](https://github.com/nschloe/tikzplotlib/commits/main/). I need to move on.
 
 > [!IMPORTANT]
@@ -68,20 +68,21 @@ Then in your LaTeX file, include the plot as follows:
 \includegraphics[width=\linewidth]{filename.pdf}
 ```
 
-The argument `width=\linewidth` is important!
+> [!IMPORTANT]
+> The argument `width=\linewidth` is **crucial**!
 
 > [!TIP]
-> That's it!
+> That's it! But you should use TikZ more.
 
 ## Using your own styles
 
 Two options:
 
-1. For this repo and modify things as you wish.
+1. Fork this repo and modify things as you wish.
 2. Use this library and update the resulting `rc_params` dict with your styles.
 
 ## Other libraries
 
 Check out [tueplots](https://github.com/pnkraemer/tueplots) if you want a more complex
-library. My library is designed to achieve what I want in publication-ready papers and
-posters, with as little code as possible (minimalism FTW!).
+library. My library is designed to achieve what **_I_** want in **_my_** papers and
+posters, with as little code as possible. Because of this, it is very forkable and hackable.
