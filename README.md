@@ -22,14 +22,18 @@ advocate for the latter ([proof](https://agustinus.kristia.de/blog/plotting/)). 
 <br />
 
 ```diff
-from pub_ready_plots import get_mpl_rcParams
+from pub_ready_plots
 
-rc_params, fig_width_in, fig_height_in = get_mpl_rcParams(
-    width=1,
-    height=0.15,
+...
+
+pub_ready_plots.get_context(
+    ...
 -   layout="icml",
 +   layout="poster-landscape",
+    ...
 )
+
+...
 ```
 
 ## Installation
