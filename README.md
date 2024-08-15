@@ -40,29 +40,25 @@ Still with me? Still want to use this library? Here's how:
 pip install pub-ready-plots
 ```
 
-## Usage
+## Quick Usage
 
 ```python
 import pub_ready_plots
 
-rc_params, fig_width_in, fig_height_in = pub_ready_plots.get_mpl_rcParams(
-    width=1,  # between 0 and 1
-    height=0.1,  # between 0 and 1
-    layout="icml",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
-    single_col=False # only works for the "icml" layout
-)
-plt.rcParams.update(rc_params)
+with pub_ready_plots.get_context(
+    width_frac=1,  # between 0 and 1
+    height_frac=0.15,  # between 0 and 1
+    nrows=1,  # depending on your subplots
+    ncols=2,  # depending on your subplots
+    layout="iclr",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
+    single_col=False,  # only works for the "icml" layout
+    sharey=True,  # Additional keyword args for `plt.subplots`
+) as (fig, axs):
+    # Do whatever you want with `fig` and `axs`
+    ...
 
-fig, axs = plt.subplots(
-    nrows,
-    ncols,
-    constrained_layout=True, # Important!
-)
-fig.set_size_inches(fig_width_in, fig_height_in)
-
-# Your plot here!
-
-plt.savefig("filename.pdf")
+    # Once your done, save it, but do NOT set `tight_layout=True`!
+    fig.savefig("filename.pdf")
 ```
 
 Then in your LaTeX file, include the plot as follows:
@@ -76,6 +72,7 @@ Then in your LaTeX file, include the plot as follows:
 
 > [!TIP]
 > That's it! But you should use TikZ more.
+> Anyway, see the full, runnable example in `examples/simple_plot.py`
 
 ## Using your own styles
 
@@ -83,6 +80,7 @@ Two options:
 
 1. Fork this repo and modify things as you wish.
 2. Use this library and update the resulting `rc_params` dict with your styles.
+   - See `examples/advanced_usage.py`
 
 ## Other libraries
 

@@ -1,81 +1,32 @@
-from typing import Any
+from contextlib import contextmanager
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure
+from numpy import ndarray
+from .styles import PAPER_FORMATS
 
-import matplotlib as mpl
-import matplotlib.font_manager as font_manager
+import matplotlib.pyplot as plt
 
-cmfont = font_manager.FontProperties(fname=mpl.get_data_path() + "/fonts/ttf/cmr10.ttf")
-FONT_NAME_CM = cmfont.get_name()
-FONT_NAME_TNR = "Times New Roman"
-FONT_NAME_AVENIR = "Avenir Next Condensed"
+from typing import Any, Generator, Union
 
-PAPER_FORMATS = {
-    "icml": {
-        "text_width": 6.00117,
-        "col_width": 3.25063,
-        "text_height": 8.50166,
-        "font_name": FONT_NAME_TNR,
-        "footnote_size": 8,
-        "script_size": 7,
-        "linewidth": 1.25,
-        "tick_size": 1,
-        "tick_width": 1,
-    },
-    "neurips": {
-        "text_width": 5.50107,
-        "col_width": 5.50107,
-        "text_height": 9.00177,
-        "font_name": FONT_NAME_TNR,
-        "footnote_size": 8,
-        "script_size": 7,
-        "linewidth": 1.25,
-        "tick_size": 1,
-        "tick_width": 1,
-    },
-    "iclr": {
-        "text_width": 5.50107,
-        "col_width": 5.50107,
-        "text_height": 9.00177,
-        "font_name": FONT_NAME_TNR,
-        "footnote_size": 8,
-        "script_size": 7,
-        "linewidth": 1.25,
-        "tick_size": 1,
-        "tick_width": 1,
-    },
-    "jmlr": {
-        "text_width": 6.00117,
-        "col_width": 6.00117,
-        "text_height": 8.50166,
-        "font_name": FONT_NAME_CM,
-        "footnote_size": 8,
-        "script_size": 7,
-        "linewidth": 1.25,
-        "tick_size": 1,
-        "tick_width": 1,
-    },
-    "poster-landscape": {
-        "text_width": 6.00117,
-        "col_width": 6.00117,
-        "text_height": 8.50166,
-        "font_name": FONT_NAME_AVENIR,
-        "footnote_size": 30,
-        "script_size": 23,
-        "linewidth": 3,
-        "tick_size": 4,
-        "tick_width": 2,
-    },
-    "poster-portrait": {
-        "text_width": 6.00117,
-        "col_width": 6.00117,
-        "text_height": 8.50166,
-        "font_name": FONT_NAME_AVENIR,
-        "footnote_size": 10,
-        "script_size": 8,
-        "linewidth": 1,
-        "tick_size": 1,
-        "tick_width": 1,
-    },
-}
+
+@contextmanager
+def get_context(
+    width_frac: float,
+    height_frac: float,
+    nrows: int,
+    ncols: int,
+    layout: str = "neurips",
+    single_col: bool = False,
+    **kwargs,
+) -> Generator[tuple[Figure, Union[Axes, ndarray[Any, Any]]], None, None]:
+    rc_params, fig_width_in, fig_height_in = get_mpl_rcParams(
+        width_frac, height_frac, layout, single_col
+    )
+
+    with plt.rc_context(rc_params):
+        fig, axs = plt.subplots(nrows, ncols, constrained_layout=True, **kwargs)
+        fig.set_size_inches(fig_width_in, fig_height_in)
+        yield (fig, axs)
 
 
 def get_mpl_rcParams(
@@ -91,7 +42,7 @@ def get_mpl_rcParams(
 
     ```python
         rc_params, fig_width_in, fig_height_in = pub_ready_plots.get_mpl_rcParams(
-            width=fig_width_frac, height=fig_height_frac, layout="icml"
+            width_frac=fig_width_frac, height_frac=fig_height_frac, layout="icml"
         )
         plt.rcParams.update(rc_params)
 
@@ -149,7 +100,7 @@ def get_mpl_rcParams(
         "font.serif": format["font_name"],
         "mathtext.fontset": "stixsans" if is_poster else "cm",
         "lines.linewidth": format["linewidth"],
-        "axes.linewidth": 1,
+        "axes.linewidth": 0.5,
         "axes.titlesize": format["footnote_size"],
         "axes.labelsize": format["script_size"],
         "axes.unicode_minus": False,

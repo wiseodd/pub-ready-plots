@@ -1,10 +1,16 @@
 [project]
 name = "pub-ready-plots"
-version = "0.1.0"
+version = "0.2.0"
 description = "Easy publication-ready matplotlib plots for ML papers and posters."
 authors = [{ name = "Agustinus Kristiadi", email = "agustinus@kristia.de" }]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.9",
+]
+requires-python = ">=3.9"
 dependencies = ["matplotlib>=3.9.0"]
-requires-python = ">=3.10"
 readme = "README.md"
 license = { text = "MIT" }
 
@@ -12,10 +18,12 @@ license = { text = "MIT" }
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
-
 [tool.pdm]
 distribution = true
 
+[tool.pdm.dev-dependencies]
+test = ["pytest>=8.2.2", "pytest-cov>=5.0.0"]
+lint = ["ruff>=0.5.0"]
+
 [tool.pytest.ini_options]
-pythonpath = ["src"]
-testpaths = ["tests"]
+testpaths = "tests"
