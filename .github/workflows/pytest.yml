@@ -1,0 +1,19 @@
+name: pytest
+
+on: pull_request
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v3
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          pdm sync -d
+      - name: Test with pytest
+        run: |
+          pdm run -v pytest tests
