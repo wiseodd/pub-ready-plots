@@ -55,6 +55,7 @@ with pub_ready_plots.get_context(
     sharey=True,  # Additional keyword args for `plt.subplots`
 ) as (fig, axs):
     # Do whatever you want with `fig` and `axs`
+    ...
 
     # Once your done, save it, but do NOT set `tight_layout=True`!
     fig.savefig("filename.pdf")
