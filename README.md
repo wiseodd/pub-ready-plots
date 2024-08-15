@@ -1,7 +1,7 @@
 # Agustinus' _Very_ Opiniated Publication-Ready Plotting Library
 
 I love TikZ (btw). I love [tikzplotlib](https://github.com/nschloe/tikzplotlib). I've been an
-advocate for the latter ([proof](https://agustinus.kristia.de/techblog/2022/05/01/plotting/)). However, tikzplotlib is [as good as dead](https://github.com/nschloe/tikzplotlib/commits/main/). I need to move on.
+advocate for the latter ([proof](https://agustinus.kristia.de/blog/plotting/)). However, tikzplotlib is [as good as dead](https://github.com/nschloe/tikzplotlib/commits/main/). I need to move on.
 
 > [!IMPORTANT]
 > Here's what I use now for all my publication needs. This library is designed to be
@@ -43,10 +43,13 @@ pip install pub-ready-plots
 ## Usage
 
 ```python
+import pub_ready_plots
+
 rc_params, fig_width_in, fig_height_in = pub_ready_plots.get_mpl_rcParams(
     width=1,  # between 0 and 1
     height=0.1,  # between 0 and 1
     layout="icml"  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
+    single_col=False # only works for the "icml" layout
 )
 plt.rcParams.update(rc_params)
 
