@@ -50,7 +50,7 @@ with pub_ready_plots.get_context(
     height_frac=0.15,  # between 0 and 1
     nrows=1,  # depending on your subplots
     ncols=2,  # depending on your subplots
-    layout="iclr",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
+    layout="icml",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
     single_col=False,  # only works for the "icml" layout
     sharey=True,  # Additional keyword args for `plt.subplots`
 ) as (fig, axs):
@@ -72,15 +72,15 @@ Then in your LaTeX file, include the plot as follows:
 
 > [!TIP]
 > That's it! But you should use TikZ more.
-> Anyway, see the full, runnable example in `examples/simple_plot.py`
+> Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/simple_plot.py)
 
 ## Using your own styles
 
 Two options:
 
-1. Fork this repo and modify things as you wish.
-2. Use this library and update the resulting `rc_params` dict with your styles.
-   - See `examples/advanced_usage.py`
+1. Use this library and update the resulting `rc_params` dict with your styles.
+   - See [`examples/advanced_usage.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/advanced_usage.py)
+2. Fork this repo and modify things as you wish.
 
 ## Other libraries
 
