@@ -48,7 +48,7 @@ import pub_ready_plots
 rc_params, fig_width_in, fig_height_in = pub_ready_plots.get_mpl_rcParams(
     width=1,  # between 0 and 1
     height=0.1,  # between 0 and 1
-    layout="icml"  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
+    layout="icml",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
     single_col=False # only works for the "icml" layout
 )
 plt.rcParams.update(rc_params)
