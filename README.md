@@ -40,29 +40,26 @@ Still with me? Still want to use this library? Here's how:
 pip install pub-ready-plots
 ```
 
-## Usage
+## Quick Usage
 
 ```python
 import pub_ready_plots
+import matplotlib.pyplot as plt
 
-rc_params, fig_width_in, fig_height_in = pub_ready_plots.get_mpl_rcParams(
-    width=1,  # between 0 and 1
-    height=0.1,  # between 0 and 1
-    layout="icml"  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
+fig, axs, rc_params = pub_ready_plots.get_context(
+    width_frac=1,  # between 0 and 1
+    height_frac=0.1,  # between 0 and 1
+    nrows=2,  # depending on your subplots
+    ncols=1,  # depending on your subplots
+    layout="icml",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
     single_col=False # only works for the "icml" layout
 )
-plt.rcParams.update(rc_params)
 
-fig, axs = plt.subplots(
-    nrows,
-    ncols,
-    constrained_layout=True, # Important!
-)
-fig.set_size_inches(fig_width_in, fig_height_in)
+with plt.rc_context(rc_params):
+    # Do whatever you want with the `axs`, e.g.
+    axs[1].plot(x, y)
 
-# Your plot here!
-
-plt.savefig("filename.pdf")
+plt.savefig("filename.pdf")  # Do NOT set `tight_layout = True`
 ```
 
 Then in your LaTeX file, include the plot as follows:
