@@ -44,22 +44,20 @@ pip install pub-ready-plots
 
 ```python
 import pub_ready_plots
-import matplotlib.pyplot as plt
 
-fig, axs, rc_params = pub_ready_plots.get_context(
+with pub_ready_plots.get_context(
     width_frac=1,  # between 0 and 1
-    height_frac=0.1,  # between 0 and 1
-    nrows=2,  # depending on your subplots
-    ncols=1,  # depending on your subplots
-    layout="icml",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
-    single_col=False # only works for the "icml" layout
-)
+    height_frac=0.15,  # between 0 and 1
+    nrows=1,  # depending on your subplots
+    ncols=2,  # depending on your subplots
+    layout="iclr",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
+    single_col=False,  # only works for the "icml" layout
+    sharey=True,  # Additional keyword args for `plt.subplots`
+) as (fig, axs):
+    # Do whatever you want with `fig` and `axs`
 
-with plt.rc_context(rc_params):
-    # Do whatever you want with the `axs`, e.g.
-    axs[1].plot(x, y)
-
-plt.savefig("filename.pdf")  # Do NOT set `tight_layout = True`
+    # Once your done, save it, but do NOT set `tight_layout=True`!
+    fig.savefig("filename.pdf")
 ```
 
 Then in your LaTeX file, include the plot as follows:
@@ -73,6 +71,7 @@ Then in your LaTeX file, include the plot as follows:
 
 > [!TIP]
 > That's it! But you should use TikZ more.
+> Anyway, see the full, runnable example in `examples/simple_plot.py`
 
 ## Using your own styles
 
@@ -80,6 +79,7 @@ Two options:
 
 1. Fork this repo and modify things as you wish.
 2. Use this library and update the resulting `rc_params` dict with your styles.
+   - See `examples/advanced_usage.py`
 
 ## Other libraries
 

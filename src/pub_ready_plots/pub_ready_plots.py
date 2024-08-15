@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from numpy import ndarray
@@ -5,9 +6,10 @@ from .styles import PAPER_FORMATS
 
 import matplotlib.pyplot as plt
 
-from typing import Any, Union
+from typing import Any, Generator, Union
 
 
+@contextmanager
 def get_context(
     width_frac: float,
     height_frac: float,
@@ -16,7 +18,7 @@ def get_context(
     layout: str = "neurips",
     single_col: bool = False,
     **kwargs,
-) -> tuple[Figure, Union[Axes, ndarray[Any, Any]]]:
+) -> Generator[tuple[Figure, Union[Axes, ndarray[Any, Any]]], None, None]:
     rc_params, fig_width_in, fig_height_in = get_mpl_rcParams(
         width_frac, height_frac, layout, single_col
     )
@@ -24,8 +26,7 @@ def get_context(
     with plt.rc_context(rc_params):
         fig, axs = plt.subplots(nrows, ncols, constrained_layout=True, **kwargs)
         fig.set_size_inches(fig_width_in, fig_height_in)
-
-    return (fig, axs)
+        yield (fig, axs)
 
 
 def get_mpl_rcParams(
@@ -99,7 +100,7 @@ def get_mpl_rcParams(
         "font.serif": format["font_name"],
         "mathtext.fontset": "stixsans" if is_poster else "cm",
         "lines.linewidth": format["linewidth"],
-        "axes.linewidth": 1,
+        "axes.linewidth": 0.5,
         "axes.titlesize": format["footnote_size"],
         "axes.labelsize": format["script_size"],
         "axes.unicode_minus": False,

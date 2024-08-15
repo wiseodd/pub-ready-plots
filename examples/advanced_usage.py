@@ -9,6 +9,12 @@ rc_params, fig_width_in, fig_height_in = pub_ready_plots.get_mpl_rcParams(
     layout="poster-portrait",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
     single_col=False,  # only works for the "icml" layout
 )
+
+# You can update `rc_params` further before feeding it to `plt`, e.g.
+rc_params.update({"axes.linewidth": 1})
+
+# Use the styles globally.
+# To make it local, use `with plt.rc_context(rc_params):`
 plt.rcParams.update(rc_params)
 
 fig, axs = plt.subplots(1, 2, constrained_layout=True)

@@ -15,8 +15,8 @@ PAPER_FORMATS = {
         "footnote_size": 8,
         "script_size": 7,
         "linewidth": 1.25,
-        "tick_size": 1,
-        "tick_width": 1,
+        "tick_size": 1.5,
+        "tick_width": 0.5,
     },
     "neurips": {
         "text_width": 5.50107,
@@ -26,8 +26,8 @@ PAPER_FORMATS = {
         "footnote_size": 8,
         "script_size": 7,
         "linewidth": 1.25,
-        "tick_size": 1,
-        "tick_width": 1,
+        "tick_size": 1.5,
+        "tick_width": 0.5,
     },
     "iclr": {
         "text_width": 5.50107,
@@ -37,8 +37,8 @@ PAPER_FORMATS = {
         "footnote_size": 8,
         "script_size": 7,
         "linewidth": 1.25,
-        "tick_size": 1,
-        "tick_width": 1,
+        "tick_size": 1.5,
+        "tick_width": 0.5,
     },
     "jmlr": {
         "text_width": 6.00117,
@@ -48,8 +48,8 @@ PAPER_FORMATS = {
         "footnote_size": 8,
         "script_size": 7,
         "linewidth": 1.25,
-        "tick_size": 1,
-        "tick_width": 1,
+        "tick_size": 1.5,
+        "tick_width": 0.5,
     },
     "poster-landscape": {
         "text_width": 6.00117,
@@ -70,7 +70,7 @@ PAPER_FORMATS = {
         "footnote_size": 10,
         "script_size": 8,
         "linewidth": 1,
-        "tick_size": 1,
-        "tick_width": 1,
+        "tick_size": 1.5,
+        "tick_width": 0.5,
     },
 }
