@@ -22,7 +22,7 @@ advocate for the latter ([proof](https://agustinus.kristia.de/blog/plotting/)). 
 <br />
 
 ```diff
-from pub_ready_plots
+import pub_ready_plots
 
 ...
 
