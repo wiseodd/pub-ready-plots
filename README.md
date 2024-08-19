@@ -56,8 +56,8 @@ with pub_ready_plots.get_context(
     single_col=False,  # only works for the "icml" layout
     nrows=1,  # depending on your subplots, default = 1
     ncols=2,  # depending on your subplots, default = 1
+    override_rc_params={"lines.linewidth": 4.123},  # Overriding rcParams
     sharey=True,  # Additional keyword args for `plt.subplots`
-    override_rc_params={"lines.linewidth": 4.123}  # Overriding rcParams
 ) as (fig, axs):
     # Do whatever you want with `fig` and `axs`
     ...
