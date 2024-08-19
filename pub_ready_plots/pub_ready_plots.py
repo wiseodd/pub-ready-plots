@@ -13,15 +13,17 @@ from typing import Any, Generator, Union
 def get_context(
     width_frac: float,
     height_frac: float,
-    nrows: int,
-    ncols: int,
     layout: str = "neurips",
     single_col: bool = False,
+    nrows: int = 1,
+    ncols: int = 1,
+    override_rc_params: dict[str, Any] = dict(),
     **kwargs,
 ) -> Generator[tuple[Figure, Union[Axes, ndarray[Any, Any]]], None, None]:
     rc_params, fig_width_in, fig_height_in = get_mpl_rcParams(
         width_frac, height_frac, layout, single_col
     )
+    rc_params.update(override_rc_params)
 
     with plt.rc_context(rc_params):
         fig, axs = plt.subplots(nrows, ncols, constrained_layout=True, **kwargs)

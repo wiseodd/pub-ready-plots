@@ -52,11 +52,12 @@ import pub_ready_plots
 with pub_ready_plots.get_context(
     width_frac=1,  # between 0 and 1
     height_frac=0.15,  # between 0 and 1
-    nrows=1,  # depending on your subplots
-    ncols=2,  # depending on your subplots
     layout="icml",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
     single_col=False,  # only works for the "icml" layout
+    nrows=1,  # depending on your subplots, default = 1
+    ncols=2,  # depending on your subplots, default = 1
     sharey=True,  # Additional keyword args for `plt.subplots`
+    override_rc_params={"lines.linewidth": 4.123}  # Overriding rcParams
 ) as (fig, axs):
     # Do whatever you want with `fig` and `axs`
     ...
@@ -74,9 +75,14 @@ Then in your LaTeX file, include the plot as follows:
 > [!IMPORTANT]
 > The argument `width=\linewidth` is **crucial**!
 
+That's it! But you should use TikZ more.
+Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/simple_plot.py)
+
 > [!TIP]
-> That's it! But you should use TikZ more.
-> Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/simple_plot.py)
+> I recommend using this library in conjunction with
+> [pypalettes]<https://github.com/JosephBARBIERDARNAL/pypalettes>
+> to avoid the generic blue-orange Matplotlib colors.
+> Distinguish your plots from others!
 
 ## Using your own styles
 
