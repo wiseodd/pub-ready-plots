@@ -1,6 +1,6 @@
 [project]
 name = "pub-ready-plots"
-version = "0.2.0"
+version = "0.2.1"
 description = "Easy publication-ready matplotlib plots for ML papers and posters."
 authors = [{ name = "Agustinus Kristiadi", email = "agustinus@kristia.de" }]
 classifiers = [
