@@ -80,7 +80,7 @@ Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://gi
 
 > [!TIP]
 > I recommend using this library in conjunction with
-> [pypalettes]<https://github.com/JosephBARBIERDARNAL/pypalettes>
+> [pypalettes](https://github.com/JosephBARBIERDARNAL/pypalettes)
 > to avoid the generic blue-orange Matplotlib colors.
 > Distinguish your plots from others!
 
