@@ -1,6 +1,7 @@
-from matplotlib.axes import Axes
-from pub_ready_plots.pub_ready_plots import get_context, get_mpl_rcParams
 import numpy as np
+from matplotlib.axes import Axes
+
+from pub_ready_plots.pub_ready_plots import get_context, get_mpl_rcParams
 
 
 def test_single_subplot():

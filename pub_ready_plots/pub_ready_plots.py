@@ -1,12 +1,12 @@
 from contextlib import contextmanager
+from typing import Any, Generator, Union
+
+import matplotlib.pyplot as plt
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from numpy import ndarray
+
 from .styles import PAPER_FORMATS
-
-import matplotlib.pyplot as plt
-
-from typing import Any, Generator, Union
 
 
 @contextmanager
