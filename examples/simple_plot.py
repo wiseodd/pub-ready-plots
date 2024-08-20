@@ -1,7 +1,7 @@
-import pub_ready_plots
-
 import numpy as np
 from matplotlib.axes import Axes
+
+import pub_ready_plots
 
 ########################################################################################
 # Single plot (i.e. no subplots)

@@ -1,8 +1,8 @@
-import pub_ready_plots
-
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.axes import Axes
+
+import pub_ready_plots
 
 ########################################################################################
 # User-specified rcParams override
