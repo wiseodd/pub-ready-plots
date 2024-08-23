@@ -1,5 +1,16 @@
 # Agustinus' _Very_ Opiniated Publication-Ready Plotting Library
 
+<div align="center">
+
+![pytest](https://github.com/wiseodd/pub-ready-plots/actions/workflows/pytest.yml/badge.svg)
+![mypy-lint](https://github.com/wiseodd/pub-ready-plots/actions/workflows/lint-mypy.yml/badge.svg)
+![ruff-lint](https://github.com/wiseodd/pub-ready-plots/actions/workflows/lint-ruff.yml/badge.svg)
+![ruff-format](https://github.com/wiseodd/pub-ready-plots/actions/workflows/format-ruff.yml/badge.svg)
+
+</div>
+
+<br />
+
 I love TikZ (btw). I love [tikzplotlib](https://github.com/nschloe/tikzplotlib). I've been an
 advocate for the latter ([proof](https://agustinus.kristia.de/blog/plotting/)). However, tikzplotlib is [as good as dead](https://github.com/nschloe/tikzplotlib/commits/main/). I need to move on.
 
