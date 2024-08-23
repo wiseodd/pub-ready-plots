@@ -6,7 +6,7 @@ from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from numpy import ndarray
 
-from .styles import PAPER_FORMATS
+from .styles import PAPER_FORMATS, Style
 
 
 @contextmanager
@@ -18,7 +18,7 @@ def get_context(
     nrows: int = 1,
     ncols: int = 1,
     override_rc_params: dict[str, Any] = dict(),
-    **kwargs,
+    **kwargs: Any,
 ) -> Generator[tuple[Figure, Union[Axes, ndarray[Any, Any]]], None, None]:
     rc_params, fig_width_in, fig_height_in = get_mpl_rcParams(
         width_frac, height_frac, layout, single_col
@@ -92,29 +92,29 @@ def get_mpl_rcParams(
     if layout not in ["icml"] and single_col:
         raise ValueError("Double-column is only supported for ICML.")
 
-    format = PAPER_FORMATS[layout]
+    format: Style = PAPER_FORMATS[layout]
     is_poster = "poster" in layout
 
     rc_params = {
         "text.usetex": False,
-        "font.size": format["footnote_size"],
+        "font.size": format.footnote_size,
         "font.family": "serif",
-        "font.serif": format["font_name"],
+        "font.serif": format.font_name,
         "mathtext.fontset": "stixsans" if is_poster else "cm",
-        "lines.linewidth": format["linewidth"],
+        "lines.linewidth": format.linewidth,
         "axes.linewidth": 0.5,
-        "axes.titlesize": format["footnote_size"],
-        "axes.labelsize": format["script_size"],
+        "axes.titlesize": format.footnote_size,
+        "axes.labelsize": format.script_size,
         "axes.unicode_minus": False,
         "axes.formatter.use_mathtext": True,
-        "legend.fontsize": format["script_size"],
-        "xtick.major.size": format["tick_size"],
-        "ytick.major.size": format["tick_size"],
-        "xtick.major.width": format["tick_width"],
-        "ytick.major.width": format["tick_width"],
+        "legend.fontsize": format.script_size,
+        "xtick.major.size": format.tick_size,
+        "ytick.major.size": format.tick_size,
+        "xtick.major.width": format.tick_width,
+        "ytick.major.width": format.tick_width,
     }
 
-    w = width_frac * (format["col_width"] if single_col else format["text_width"])
-    h = height_frac * format["text_height"]
+    w = width_frac * (format.col_width if single_col else format.text_width)
+    h = height_frac * format.text_height
 
     return rc_params, w, h
