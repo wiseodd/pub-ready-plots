@@ -14,4 +14,8 @@ jobs:
       - name: Install the project
         run: uv sync --all-extras --dev
       - name: Run tests
-        run: uv run pytest tests
+        run: uv run pytest tests --cov
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
