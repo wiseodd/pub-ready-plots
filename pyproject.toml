@@ -22,7 +22,12 @@ build-backend = "pdm.backend"
 distribution = true
 
 [tool.uv]
-dev-dependencies = ["pytest>=8.2.2", "pytest-cov>=5.0.0", "ruff>=0.5.0"]
+dev-dependencies = [
+    "pytest>=8.2.2",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.5.0",
+    "mypy>=1.11.1",
+]
 
 [tool.pytest.ini_options]
 testpaths = "tests"
