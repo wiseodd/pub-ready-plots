@@ -1,6 +1,6 @@
 # Agustinus' _Very_ Opiniated Publication-Ready Plotting Library
 
-<div align="center">
+<div align="center" style="padding-bottom: 2em;">
 
 ![pytest](https://github.com/wiseodd/pub-ready-plots/actions/workflows/pytest.yml/badge.svg)
 ![mypy-lint](https://github.com/wiseodd/pub-ready-plots/actions/workflows/lint-mypy.yml/badge.svg)
