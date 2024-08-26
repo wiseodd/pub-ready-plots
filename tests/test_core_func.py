@@ -3,7 +3,17 @@ import pytest
 
 from pub_ready_plots import get_mpl_rcParams
 
-LAYOUTS = ["icml", "iclr", "neurips", "jmlr", "poster-portrait", "poster-landscape"]
+LAYOUTS = [
+    "icml",
+    "iclr",
+    "neurips",
+    "jmlr",
+    "aistats",
+    "uai",
+    "tmlr",
+    "poster-portrait",
+    "poster-landscape",
+]
 
 
 @pytest.mark.parametrize("layout", LAYOUTS)
@@ -45,7 +55,7 @@ def test_incorrect_layout() -> None:
 
 @pytest.mark.parametrize("layout", LAYOUTS)
 def test_double_column(layout: str) -> None:
-    if layout == "icml":
+    if layout in ["icml", "aistats", "uai"]:
         _ = get_mpl_rcParams(
             width_frac=1, height_frac=0.1, layout=layout, single_col=False
         )

@@ -1,10 +1,9 @@
 [project]
 name = "pub-ready-plots"
-version = "0.2.1"
+version = "1.0"
 description = "Easy publication-ready matplotlib plots for ML papers and posters."
 authors = [{ name = "Agustinus Kristiadi", email = "agustinus@kristia.de" }]
 classifiers = [
-  "Development Status :: 3 - Alpha",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3.9",
@@ -23,10 +22,10 @@ distribution = true
 
 [tool.uv]
 dev-dependencies = [
-    "pytest>=8.2.2",
-    "pytest-cov>=5.0.0",
-    "ruff>=0.5.0",
-    "mypy>=1.11.1",
+  "pytest>=8.2.2",
+  "pytest-cov>=5.0.0",
+  "ruff>=0.5.0",
+  "mypy>=1.11.1",
 ]
 
 [tool.pytest.ini_options]

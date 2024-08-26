@@ -11,8 +11,8 @@ from .styles import PAPER_FORMATS, Style
 
 @contextmanager
 def get_context(
-    width_frac: float,
-    height_frac: float,
+    width_frac: float = 1,
+    height_frac: float = 0.15,
     layout: str = "neurips",
     single_col: bool = False,
     nrows: int = 1,
@@ -32,8 +32,8 @@ def get_context(
 
 
 def get_mpl_rcParams(
-    width_frac: float,
-    height_frac: float,
+    width_frac: float = 1,
+    height_frac: float = 0.15,
     layout: str = "neurips",
     single_col: bool = False,
 ) -> tuple[dict[str, Any], float, float]:
@@ -89,8 +89,8 @@ def get_mpl_rcParams(
     if layout not in PAPER_FORMATS.keys():
         raise ValueError(f"Layout must be in {list(PAPER_FORMATS.keys())}.")
 
-    if layout not in ["icml"] and single_col:
-        raise ValueError("Double-column is only supported for ICML.")
+    if layout not in ["icml", "aistats", "uai"] and single_col:
+        raise ValueError("Double-column is only supported for ICML, AISTATS, and UAI.")
 
     format: Style = PAPER_FORMATS[layout]
     is_poster = "poster" in layout
