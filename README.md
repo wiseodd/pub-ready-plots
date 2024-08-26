@@ -56,7 +56,7 @@ Still with me? Still want to use this library? Here's how:
 pip install pub-ready-plots
 ```
 
-## Quick Usage
+## Quick usage
 
 ```python
 import pub_ready_plots
