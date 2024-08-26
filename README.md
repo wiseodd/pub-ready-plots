@@ -62,9 +62,9 @@ pip install pub-ready-plots
 import pub_ready_plots
 
 with pub_ready_plots.get_context(
-    width_frac=1,  # between 0 and 1
-    height_frac=0.15,  # between 0 and 1
-    layout="icml",  # or "iclr", "neurips", "aistats", "uai", "tmlr" "poster-portrait", "poster-landscape"
+    width_frac=1,  # Multiplier for `\linewidth`
+    height_frac=0.15,  # Multiplier for `\textheight`
+    layout="icml",  # or "iclr", "neurips", "aistats", "uai", "tmlr", "poster-portrait", "poster-landscape"
     single_col=False,  # only works for the "icml", "aistats", "uai" layouts
     nrows=1,  # depending on your subplots, default = 1
     ncols=2,  # depending on your subplots, default = 1
