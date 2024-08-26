@@ -56,7 +56,7 @@ Still with me? Still want to use this library? Here's how:
 pip install pub-ready-plots
 ```
 
-## Quick Usage
+## Quick usage
 
 ```python
 import pub_ready_plots
@@ -85,7 +85,9 @@ Then in your LaTeX file, include the plot as follows:
 ```
 
 > [!IMPORTANT]
-> The argument `width=\linewidth` is **crucial**!
+> The argument `width=\linewidth` is **crucial**! Also, do not specify the `height`
+> option! Otherwise, your plot is distorted. (All measurements have been done in
+> `pub-ready-plots`.)
 
 That's it! But you should use TikZ more.
 Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/simple_plot.py)
@@ -96,7 +98,45 @@ Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://gi
 > to avoid the generic blue-orange Matplotlib colors.
 > Distinguish your plots from others!
 
-## Using your own styles
+## Advanced usages
+
+### Creating plots for `\wrapfigure`
+
+Say we want to have an inline figure of size `0.4\textwidth` and
+height `0.15\textheight` in our NeurIPS paper.
+Then all we have to do is the following:
+
+```python
+import pub_ready_plots
+
+with pub_ready_plots.get_context(
+    width_frac=0.4, height_frac=0.15, layout="neurips",
+) as (fig, axs):
+    # Your plot here!
+    ...
+    fig.savefig("mywrapfigure.pdf")
+```
+
+In our LaTeX doc, we can then use the `wrapfig` package and do the following:
+
+```tex
+Some paragraph.
+
+\begin{wrapfigure}[11]{r}{0.4\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{mywrapfigure.pdf}
+  ...
+\end{wrapfigure}
+
+Some other paragraph.
+```
+
+> [!IMPORTANT]
+> In the `\begin{wrapfigure}` statement, specify the correct figure size
+> (in our case, `0.4\textwidth`). Then, in the `\includegraphics` statement,
+> **_always_** specify `width=\linewidth` _without_ specifying the height.
+
+### Using your own styles
 
 Two options:
 
