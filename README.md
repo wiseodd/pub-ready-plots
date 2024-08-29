@@ -42,8 +42,6 @@ import pub_ready_plots as prp
 prp.get_context(
 -   layout=prp.Layout.ICML,
 +   layout=prp.Layout.POSTER_LANDSCAPE,
-    ...
-)
 
 ...
 ```
@@ -58,12 +56,17 @@ pip install pub-ready-plots
 
 ## Quick usage
 
+Wrap you current plotting script with the following `with` statement.
+By default, this will create a full-width, `0.15\textheight` figure that conforms
+to the specified template.
+
+By doing this, your figure is guaranteed to have the correct scaling, dimensions,
+font faces, and font sizes. All in all, this makes your figure "blends" with
+the target venue's main template---your paper overall will look more professional!
+
 ```python
 import pub_ready_plots as prp
 
-# Wrap you current plotting script with this `with` statement.
-# By default, this will create a full-width, 0.15*\textheight plot that conforms
-# to the ICLR template.
 with prp.get_context(layout=prp.Layout.ICLR) as (fig, axs):
     # Do whatever you want with `fig` and `axs`
     ...
@@ -78,10 +81,9 @@ Then in your LaTeX file, include the plot as follows:
 \includegraphics[width=\linewidth]{filename.pdf}
 ```
 
-> [!IMPORTANT]
-> The argument `width=\linewidth` is **crucial**! Also, do not specify the `height`
-> option! Otherwise, your plot is distorted. (All measurements have been done in
-> `pub-ready-plots`.)
+The argument `width=\linewidth` is **crucial**! Also, do not specify the `height`
+option! Otherwise, your plot is distorted. (All measurements have been done in
+`pub-ready-plots`.)
 
 That's it! But you should use TikZ more.
 Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/simple_plot.py)
@@ -104,7 +106,7 @@ with prp.get_context(
     layout=prp.Layout.ICML,  # check `Layout` for all available layouts
     width_frac=1,  # multiplier for `\linewidth`
     height_frac=0.15,  # multiplier for `\textheight`
-    single_col=False,  # only works for the "icml", "aistats", "uai" layouts
+    single_col=False,  # only works for the ICML, UAI, AISTATS layouts
     nrows=1,  # depending on your subplots, default = 1
     ncols=2,  # depending on your subplots, default = 1
     override_rc_params={"lines.linewidth": 4.123},  # Overriding rcParams
