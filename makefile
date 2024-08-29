@@ -1,3 +1,6 @@
+test:
+	uv run pytest --cov
+
 ruff:
 	-uv run ruff format
 	@uv run ruff check --fix

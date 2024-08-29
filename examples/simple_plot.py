@@ -1,16 +1,18 @@
 import numpy as np
 from matplotlib.axes import Axes
 
-import pub_ready_plots
+import pub_ready_plots as prp
 
 ########################################################################################
 # Single plot (i.e. no subplots)
 ########################################################################################
-with pub_ready_plots.get_context(
-    width_frac=1,  # between 0 and 1
-    height_frac=0.15,  # between 0 and 1
-    layout="iclr",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
-) as (fig, ax):
+with (
+    prp.get_context(
+        layout=prp.Layout.ICLR,  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
+        width_frac=1,  # between 0 and 1
+        height_frac=0.15,  # between 0 and 1
+    ) as (fig, ax)
+):
     # Just like in `plt.subplots`, `ax` is a matplotlib Axes if
     # nrows & ncols are not specified (both default to 1).
     assert isinstance(ax, Axes)
@@ -27,15 +29,17 @@ with pub_ready_plots.get_context(
 ########################################################################################
 # Multiple subplots
 ########################################################################################
-with pub_ready_plots.get_context(
-    width_frac=1,  # between 0 and 1
-    height_frac=0.15,  # between 0 and 1
-    nrows=1,  # depending on your subplots
-    ncols=2,  # depending on your subplots
-    layout="iclr",  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
-    single_col=False,  # only works for the "icml" layout
-    sharey=True,  # Additional keyword args for `plt.subplots`
-) as (fig, axs):
+with (
+    prp.get_context(
+        layout=prp.Layout.ICLR,  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
+        width_frac=1,  # between 0 and 1
+        height_frac=0.15,  # between 0 and 1
+        nrows=1,  # depending on your subplots
+        ncols=2,  # depending on your subplots
+        single_col=False,  # only works for the "icml" layout
+        sharey=True,  # Additional keyword args for `plt.subplots`
+    ) as (fig, axs)
+):
     # If `nrows` or `ncols` are not 1, `axs` is a NumPy array containing Axes'
     assert isinstance(axs, np.ndarray)
 
