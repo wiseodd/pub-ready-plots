@@ -34,14 +34,13 @@ advocate for the latter ([proof](https://agustinus.kristia.de/blog/plotting/)). 
 <br />
 
 ```diff
-import pub_ready_plots
+import pub_ready_plots as prp
 
 ...
 
-pub_ready_plots.get_context(
-    ...
--   layout="icml",
-+   layout="poster-landscape",
+prp.get_context(
+-   layout=prp.Layout.ICML,
++   layout=prp.Layout.POSTER_LANDSCAPE,
     ...
 )
 
@@ -59,18 +58,12 @@ pip install pub-ready-plots
 ## Quick usage
 
 ```python
-import pub_ready_plots
+import pub_ready_plots as prp
 
-with pub_ready_plots.get_context(
-    width_frac=1,  # Multiplier for `\linewidth`
-    height_frac=0.15,  # Multiplier for `\textheight`
-    layout="icml",  # or "iclr", "neurips", "aistats", "uai", "tmlr", "poster-portrait", "poster-landscape"
-    single_col=False,  # only works for the "icml", "aistats", "uai" layouts
-    nrows=1,  # depending on your subplots, default = 1
-    ncols=2,  # depending on your subplots, default = 1
-    override_rc_params={"lines.linewidth": 4.123},  # Overriding rcParams
-    sharey=True,  # Additional keyword args for `plt.subplots`
-) as (fig, axs):
+# Wrap you current plotting script with this `with` statement.
+# By default, this will create a full-width, 0.15*\textheight plot that conforms
+# to the ICLR template.
+with prp.get_context(layout=prp.Layout.ICLR) as (fig, axs):
     # Do whatever you want with `fig` and `axs`
     ...
 
@@ -91,6 +84,7 @@ Then in your LaTeX file, include the plot as follows:
 
 That's it! But you should use TikZ more.
 Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/simple_plot.py)
+See [here](#all-available-options) for available options for `get_context()`!
 
 > [!TIP]
 > I recommend using this library in conjunction with
@@ -100,6 +94,26 @@ Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://gi
 
 ## Advanced usages
 
+### All available options
+
+```python
+import pub_ready_plots as prp
+
+with prp.get_context(
+    layout=prp.Layout.ICML,  # check `Layout` for all available layouts
+    width_frac=1,  # multiplier for `\linewidth`
+    height_frac=0.15,  # multiplier for `\textheight`
+    single_col=False,  # only works for the "icml", "aistats", "uai" layouts
+    nrows=1,  # depending on your subplots, default = 1
+    ncols=2,  # depending on your subplots, default = 1
+    override_rc_params={"lines.linewidth": 4.123},  # Overriding rcParams
+    sharey=True,  # Additional keyword args for `plt.subplots`
+) as (fig, axs):
+    ...
+
+    fig.savefig("filename.pdf")
+```
+
 ### Creating plots for `\wrapfigure`
 
 Say we want to have an inline figure of size `0.4\textwidth` and
@@ -107,10 +121,10 @@ height `0.15\textheight` in our NeurIPS paper.
 Then all we have to do is the following:
 
 ```python
-import pub_ready_plots
+import pub_ready_plots as prp
 
-with pub_ready_plots.get_context(
-    width_frac=0.4, height_frac=0.15, layout="neurips",
+with prp.get_context(
+    layout=prp.Layout.NEURIPS, width_frac=0.4, height_frac=0.15,
 ) as (fig, axs):
     # Your plot here!
     ...

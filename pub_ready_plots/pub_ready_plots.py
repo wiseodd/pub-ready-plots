@@ -6,14 +6,14 @@ from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from numpy import ndarray
 
-from .styles import PAPER_FORMATS, Style
+from .styles import PAPER_FORMATS, Layout, Style
 
 
 @contextmanager
 def get_context(
+    layout: Layout,
     width_frac: float = 1,
     height_frac: float = 0.15,
-    layout: str = "neurips",
     single_col: bool = False,
     nrows: int = 1,
     ncols: int = 1,
@@ -21,7 +21,10 @@ def get_context(
     **kwargs: Any,
 ) -> Generator[tuple[Figure, Union[Axes, ndarray[Any, Any]]], None, None]:
     rc_params, fig_width_in, fig_height_in = get_mpl_rcParams(
-        width_frac, height_frac, layout, single_col
+        layout=layout,
+        width_frac=width_frac,
+        height_frac=height_frac,
+        single_col=single_col,
     )
     rc_params.update(override_rc_params)
 
@@ -32,9 +35,9 @@ def get_context(
 
 
 def get_mpl_rcParams(
+    layout: Layout,
     width_frac: float = 1,
     height_frac: float = 0.15,
-    layout: str = "neurips",
     single_col: bool = False,
 ) -> tuple[dict[str, Any], float, float]:
     """Get matplotlib rcParams dict and fig width & height in inches, depending on the
@@ -44,7 +47,7 @@ def get_mpl_rcParams(
 
     ```python
         rc_params, fig_width_in, fig_height_in = pub_ready_plots.get_mpl_rcParams(
-            width_frac=fig_width_frac, height_frac=fig_height_frac, layout="icml"
+            layout=Layout.ICML, width_frac=fig_width_frac, height_frac=fig_height_frac
         )
         plt.rcParams.update(rc_params)
 
@@ -69,12 +72,13 @@ def get_mpl_rcParams(
     The arg. `width=\\linewidth` is important!
 
     Args:
+        layout: The LaTeX template used. Possible values are Layout.ICML, Layout.NeurIPS,
+            Layout.ICLR, Layout.AISTATS, Layout.UAI, Layout.JMLR, Layout.TMLR,
+            Layout.POSTER_PORTRAIT (A1, 2-column), and Layout.POSTER_LANDSCAPE (A0, 3-col).
         width_frac: Fraction of `\\linewidth` as the figure width. Usually set to 1.
         height_frac: Fraction of `\\textheight` as the figure height. Try 0.175.
-        layout: The LaTeX template used. Possible values are "icml", "iclr", "neurips",
-            "jmlr", "poster-portrait" (A1, 2-column), and "poster-landscape" (A0, 3-col).
-        single_col: Whether the plot is single column in a layout that has two columns
-            (e.g. ICML). Not supported for any other layout.
+        single_col: Whether the plot is single column in a layout that has multiple columns
+            (e.g. ICML, posters). Not supported for any other layout.
 
     Returns:
         rc_params: Matplotlib key-value rc-params. Use it via
@@ -86,14 +90,23 @@ def get_mpl_rcParams(
     if (width_frac <= 0 or width_frac > 1) or (height_frac <= 0 or height_frac > 1):
         raise ValueError("Both `width_frac` and `height_frac` must be between 0 and 1.")
 
-    if layout not in PAPER_FORMATS.keys():
-        raise ValueError(f"Layout must be in {list(PAPER_FORMATS.keys())}.")
-
-    if layout not in ["icml", "aistats", "uai"] and single_col:
-        raise ValueError("Double-column is only supported for ICML, AISTATS, and UAI.")
+    if (
+        layout
+        not in [
+            Layout.ICML,
+            Layout.AISTATS,
+            Layout.UAI,
+            Layout.POSTER_PORTRAIT,
+            Layout.POSTER_LANDSCAPE,
+        ]
+        and single_col
+    ):
+        raise ValueError(
+            "Double-column is only supported for ICML, AISTATS, UAI, POSTER_PORTRAIT, and POSTER_LANDSCAPE."
+        )
 
     format: Style = PAPER_FORMATS[layout]
-    is_poster = "poster" in layout
+    is_poster: bool = "poster" in layout._name_.lower()
 
     rc_params = {
         "text.usetex": False,
