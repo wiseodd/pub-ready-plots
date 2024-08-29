@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![PyPI version](https://badge.fury.io/py/pub-ready-plots.svg)](https://badge.fury.io/py/pub-ready-plots)
 [![codecov](https://codecov.io/github/wiseodd/pub-ready-plots/graph/badge.svg?token=N2I020J0RR)](https://codecov.io/github/wiseodd/pub-ready-plots)
 ![pytest](https://github.com/wiseodd/pub-ready-plots/actions/workflows/pytest.yml/badge.svg)
 ![mypy-lint](https://github.com/wiseodd/pub-ready-plots/actions/workflows/lint-mypy.yml/badge.svg)
