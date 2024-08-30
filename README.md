@@ -86,6 +86,11 @@ The argument `width=\linewidth` is **crucial**! Also, do not specify the `height
 option! Otherwise, your plot is distorted. (All measurements have been done in
 `pub-ready-plots`.)
 
+If you set the `width_frac` argument when you call `prp.get_context()`, you need
+to put the same scaling factor in your LaTeX code. E.g., if you call
+`prp.get_context(..., width_frac=0.5, ...)`, then you include it via
+`\includegraphics[width=0.5\linewidth]{...}`.
+
 > [!WARNING]
 > If you want to have multiple subplots in a single figure in your paper,
 > **DO NOT** create multiple pdf files! Instead, follow
