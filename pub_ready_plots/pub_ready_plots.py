@@ -121,6 +121,8 @@ def get_mpl_rcParams(
         "axes.unicode_minus": False,
         "axes.formatter.use_mathtext": True,
         "legend.fontsize": format.script_size,
+        "xtick.labelsize": format.script_size,
+        "ytick.labelsize": format.script_size,
         "xtick.major.size": format.tick_size,
         "ytick.major.size": format.tick_size,
         "xtick.major.width": format.tick_width,

@@ -51,7 +51,7 @@ prp.get_context(
 Still with me? Still want to use this library? Here's how:
 
 ```bash
-pip install pub-ready-plots
+pip install --upgrade pub-ready-plots
 ```
 
 ## Quick usage
@@ -68,8 +68,9 @@ the target venue's main template---your paper overall will look more professiona
 import pub_ready_plots as prp
 
 with prp.get_context(layout=prp.Layout.ICLR) as (fig, axs):
-    # Do whatever you want with `fig` and `axs`
-    ...
+    # Do whatever you want with `fig` and `axs`, e.g.:
+    x = np.linspace(-1, 1)
+    axs.plot(x, np.cos(x))
 
     # Once your done, save it, but do NOT set `tight_layout=True`!
     fig.savefig("filename.pdf")
@@ -85,6 +86,12 @@ The argument `width=\linewidth` is **crucial**! Also, do not specify the `height
 option! Otherwise, your plot is distorted. (All measurements have been done in
 `pub-ready-plots`.)
 
+> [!WARNING]
+> If you want to have multiple subplots in a single figure in your paper,
+> **DO NOT** create multiple pdf files! Instead, follow
+> [this example](#creating-subplots), while keeping
+> `\includegraphics[width=\linewidth]` without a scaling factor.
+
 That's it! But you should use TikZ more.
 Anyway, see the full, runnable example in [`examples/simple_plot.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/simple_plot.py)
 See [here](#all-available-options) for available options for `get_context()`!
@@ -97,24 +104,36 @@ See [here](#all-available-options) for available options for `get_context()`!
 
 ## Advanced usages
 
-### All available options
+### Creating a figure with multiple subplots
+
+To create a figure with multiple subplots do the following.
+Note that in your LaTeX doc, you still include the pdf via
+`\includegraphics[width=\linewidth]`, without any scaling factor.
 
 ```python
-import pub_ready_plots as prp
-
 with prp.get_context(
-    layout=prp.Layout.ICML,  # check `Layout` for all available layouts
-    width_frac=1,  # multiplier for `\linewidth`
-    height_frac=0.15,  # multiplier for `\textheight`
-    single_col=False,  # only works for the ICML, UAI, AISTATS layouts
-    nrows=1,  # depending on your subplots, default = 1
-    ncols=2,  # depending on your subplots, default = 1
-    override_rc_params={"lines.linewidth": 4.123},  # Overriding rcParams
-    sharey=True,  # Additional keyword args for `plt.subplots`
+    layout=prp.Layout.NEURIPS,
+    width_frac=1,
+    height_frac=0.15,
+    nrows=1,
+    ncols=2,
+    sharey=True,
 ) as (fig, axs):
-    ...
+    # As an example, we plot sine and cosine functions
+    x = np.linspace(-1, 1, 100)
 
-    fig.savefig("filename.pdf")
+    axs[0].plot(x, np.sin(x))
+    axs[0].set_title("Sine")
+    axs[0].set_xlabel(r"$x$")
+    axs[0].set_ylabel(r"$\mathrm{sin}(x)$")
+
+    axs[1].plot(x, np.cos(x))
+    axs[1].plot(x, 2 * np.cos(x))
+    axs[1].set_title("Cosine")
+    axs[1].set_xlabel(r"$x$")
+    axs[1].set_ylabel(r"$\mathrm{cos}(x)$")
+
+    fig.savefig("subplots.pdf")
 ```
 
 ### Creating plots for `\wrapfigure`
@@ -152,6 +171,26 @@ Some other paragraph.
 > In the `\begin{wrapfigure}` statement, specify the correct figure size
 > (in our case, `0.4\textwidth`). Then, in the `\includegraphics` statement,
 > **_always_** specify `width=\linewidth` _without_ specifying the height.
+
+### All available options
+
+```python
+import pub_ready_plots as prp
+
+with prp.get_context(
+    layout=prp.Layout.ICML,  # check `Layout` for all available layouts
+    width_frac=1,  # multiplier for `\linewidth`
+    height_frac=0.15,  # multiplier for `\textheight`
+    single_col=False,  # only works for the ICML, UAI, AISTATS layouts
+    nrows=1,  # depending on your subplots, default = 1
+    ncols=2,  # depending on your subplots, default = 1
+    override_rc_params={"lines.linewidth": 4.123},  # Overriding rcParams
+    sharey=True,  # Additional keyword args for `plt.subplots`
+) as (fig, axs):
+    ...
+
+    fig.savefig("filename.pdf")
+```
 
 ### Using your own styles
 
