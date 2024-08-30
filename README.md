@@ -51,7 +51,7 @@ prp.get_context(
 Still with me? Still want to use this library? Here's how:
 
 ```bash
-pip install pub-ready-plots
+pip install --upgrade pub-ready-plots
 ```
 
 ## Quick usage
