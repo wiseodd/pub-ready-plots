@@ -2,6 +2,7 @@ from contextlib import contextmanager
 from typing import Any, Generator, Union
 
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from numpy import ndarray
@@ -111,11 +112,12 @@ def get_mpl_rcParams(
     rc_params = {
         "text.usetex": False,
         "font.size": format.footnote_size,
-        "font.family": "serif",
-        "font.serif": format.font_name,
+        "font.family": "sans-serif" if is_poster else "serif",
+        "font.serif": [format.font_name] + rcParams["font.serif"],
+        "font.sans-serif": [format.font_name, "Times"] + rcParams["font.sans-serif"],
         "mathtext.fontset": "stixsans" if is_poster else "cm",
         "lines.linewidth": format.linewidth,
-        "axes.linewidth": 0.5,
+        "axes.linewidth": format.linewidth / 2,
         "axes.titlesize": format.footnote_size,
         "axes.labelsize": format.script_size,
         "axes.unicode_minus": False,
