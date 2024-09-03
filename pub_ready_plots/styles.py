@@ -20,6 +20,7 @@ class Layout(Enum):
     TMLR = "tmlr"
     POSTER_LANDSCAPE = "poster-landscape"
     POSTER_PORTRAIT = "poster-portrait"
+    SLIDES_169 = "slides-169"
 
 
 @dataclass
@@ -138,5 +139,16 @@ PAPER_FORMATS = {
         linewidth=1,
         tick_size=1,
         tick_width=1,
+    ),
+    Layout.SLIDES_169: Style(
+        text_width=5.5129,
+        col_width=5.5129,
+        text_height=3.48863,
+        font_name=FONT_NAME_AVENIR,
+        footnote_size=8,
+        script_size=7,
+        linewidth=1,
+        tick_size=1,
+        tick_width=0.5,
     ),
 }
