@@ -177,6 +177,23 @@ Some other paragraph.
 > (in our case, `0.4\textwidth`). Then, in the `\includegraphics` statement,
 > **_always_** specify `width=\linewidth` _without_ specifying the height.
 
+### Usage with Seaborn
+
+This library is compatible with Seaborn, see [example](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/with_seaborn.py).
+The most important thing to remember is to always pass the axis returned by
+`prp.get_context()` to Seaborn's plotting functions. Example:
+
+```python
+import seaborn as sns
+import pub_ready_plots as prp
+
+with prp.get_context(layout=prp.Layout.SLIDES_196) as (fig, ax):
+    sns.histplot(
+        data=sns.load_dataset("planets"), x="distance", log_scale=True
+        ax=ax  # !! IMPORTANT !!
+    )
+```
+
 ### All available options
 
 ```python
