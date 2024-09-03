@@ -43,8 +43,8 @@ def get_mpl_rcParams(
 ) -> tuple[dict[str, Any], float, float]:
     """Get matplotlib rcParams dict and fig width & height in inches, depending on the
     chosen layout and fractional width and height. Fractional here in the sense that
-    The resulting fig width/height in inches is calculated as `width_frac\\linewidth` and
-    `height_frac\\textheight` in LaTeX. Usage:
+    The resulting fig width/height in inches is calculated as `width_frac\\linewidth`
+    and `height_frac\\textheight` in LaTeX. Usage:
 
     ```python
         rc_params, fig_width_in, fig_height_in = pub_ready_plots.get_mpl_rcParams(
@@ -75,11 +75,12 @@ def get_mpl_rcParams(
     Args:
         layout: The LaTeX template used. Possible values are Layout.ICML, Layout.NeurIPS,
             Layout.ICLR, Layout.AISTATS, Layout.UAI, Layout.JMLR, Layout.TMLR,
-            Layout.POSTER_PORTRAIT (A1, 2-column), and Layout.POSTER_LANDSCAPE (A0, 3-col).
+            Layout.POSTER_PORTRAIT (A1, 2-column),
+            and Layout.POSTER_LANDSCAPE (A0, 3-col).
         width_frac: Fraction of `\\linewidth` as the figure width. Usually set to 1.
         height_frac: Fraction of `\\textheight` as the figure height. Try 0.175.
-        single_col: Whether the plot is single column in a layout that has multiple columns
-            (e.g. ICML, posters). Not supported for any other layout.
+        single_col: Whether the plot is single column in a layout that has multiple
+            columns (e.g. ICML, posters). Not supported for any other layout.
 
     Returns:
         rc_params: Matplotlib key-value rc-params. Use it via
@@ -103,7 +104,8 @@ def get_mpl_rcParams(
         and single_col
     ):
         raise ValueError(
-            "Double-column is only supported for ICML, AISTATS, UAI, POSTER_PORTRAIT, and POSTER_LANDSCAPE."
+            """Double-column is only supported for ICML, AISTATS, UAI, """
+            """POSTER_PORTRAIT, and POSTER_LANDSCAPE."""
         )
 
     format: Style = PAPER_FORMATS[layout]
