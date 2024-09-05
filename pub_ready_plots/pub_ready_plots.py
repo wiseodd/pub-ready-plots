@@ -109,15 +109,17 @@ def get_mpl_rcParams(
         )
 
     format: Style = PAPER_FORMATS[layout]
-    is_poster: bool = "poster" in layout._name_.lower()
+    is_poster_or_slides: bool = any(
+        name in layout._name_.lower() for name in ["poster", "slides"]
+    )
 
     rc_params = {
         "text.usetex": False,
         "font.size": format.footnote_size,
-        "font.family": "sans-serif" if is_poster else "serif",
+        "font.family": "sans-serif" if is_poster_or_slides else "serif",
         "font.serif": [format.font_name] + rcParams["font.serif"],
         "font.sans-serif": [format.font_name, "Times"] + rcParams["font.sans-serif"],
-        "mathtext.fontset": "stixsans" if is_poster else "cm",
+        "mathtext.fontset": "stixsans" if is_poster_or_slides else "cm",
         "lines.linewidth": format.linewidth,
         "axes.linewidth": format.linewidth / 2,
         "axes.titlesize": format.footnote_size,
