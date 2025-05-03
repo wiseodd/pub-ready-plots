@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.9"
 resolution-markers = [
     "python_full_version < '3.11'",
@@ -140,7 +141,7 @@ wheels = [
 
 [package.optional-dependencies]
 toml = [
-    { name = "tomli", marker = "python_full_version == '3.11'" },
+    { name = "tomli", marker = "python_full_version <= '3.11'" },
 ]
 
 [[package]]
@@ -589,7 +590,7 @@ wheels = [
 
 [[package]]
 name = "pub-ready-plots"
-version = "1.1"
+version = "1.2.1"
 source = { editable = "." }
 dependencies = [
     { name = "matplotlib" },
@@ -626,6 +627,9 @@ dependencies = [
     { name = "matplotlib" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/49/9b/81c44807ebf1d3aa95648bf6c4b4e51ffeba45fef4286868edb957a7eaec/pypalettes-0.1.3.tar.gz", hash = "sha256:38479a97b22d8c4bada920ad158c98887467e5db0f57a6a9b3733af5ea7c6bdf", size = 366229 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/db/83/fc9cfb92bfafa1afa313d62e8eb4b4d1fb4cdce805ff1af92ba1e1ea5bba/pypalettes-0.1.3-py3-none-any.whl", hash = "sha256:74565693137861605fff76b0ae559603bc78dc19562b9ca48ef73145345df62f", size = 375608 },
+]
 
 [[package]]
 name = "pyparsing"

@@ -8,7 +8,7 @@ import pub_ready_plots as prp
 ########################################################################################
 with (
     prp.get_context(
-        layout=prp.Layout.NEURIPS,  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
+        layout=prp.Layout.POSTER_LANDSCAPE,  # or "iclr", "neurips", "poster-portrait", "poster-landscape"
         width_frac=1,  # between 0 and 1
         height_frac=0.15,  # between 0 and 1
     ) as (fig, ax)
