@@ -194,13 +194,13 @@ with prp.get_context(layout=prp.Layout.SLIDES_196) as (fig, ax):
     )
 ```
 
-### Poster, slides fonts too bold?
+### Fonts too bold?
 
-The default font is Avenir Next Condensed.
-In MacOS, to font format is `.ttc` and Matplotlib has issue with it.
-So, please install the more standard `.ttf` version.
+You might encounter this problem on MacOS, e.g., when using Avenir Next Condensed font.
+On MacOS, the font format is `.ttc` and Matplotlib has issue with it.
+So, please install the more standard `.ttf` or `.otf` version.
 
-You can also use different fonts:
+You can also easily change the font, e.g.:
 
 ```python
 import pub_ready_plots as prp

@@ -7,6 +7,7 @@ import matplotlib.font_manager as font_manager
 cmfont = font_manager.FontProperties(fname=mpl.get_data_path() + "/fonts/ttf/cmr10.ttf")
 FONT_NAME_CM = cmfont.get_name()
 FONT_NAME_TNR = "Times New Roman"
+FONT_NAME_ARIAL = "Arial"
 FONT_NAME_AVENIR = "Avenir Next Condensed"
 
 
@@ -121,7 +122,7 @@ PAPER_FORMATS = {
         text_width=12.8838,
         col_width=12.8838,
         text_height=27.04193,
-        font_name=FONT_NAME_AVENIR,
+        font_name=FONT_NAME_ARIAL,
         footnote_size=30,
         script_size=23,
         linewidth=3,
@@ -133,7 +134,7 @@ PAPER_FORMATS = {
         text_width=9.34645,
         col_width=9.34645,
         text_height=29.10995,
-        font_name=FONT_NAME_AVENIR,
+        font_name=FONT_NAME_ARIAL,
         footnote_size=10,
         script_size=8,
         linewidth=1,
@@ -144,7 +145,7 @@ PAPER_FORMATS = {
         text_width=5.5129,
         col_width=5.5129,
         text_height=3.48863,
-        font_name=FONT_NAME_AVENIR,
+        font_name=FONT_NAME_ARIAL,
         footnote_size=8,
         script_size=7,
         linewidth=1,
