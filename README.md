@@ -241,6 +241,26 @@ Two options:
    - See [`examples/advanced_usage.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/advanced_usage.py)
 2. Fork this repo and modify things as you wish.
 
+## Dev's Guide
+
+1. Install [uv](https://docs.astral.sh/uv/).
+2. Create a virtualenv:
+   ```
+   uv venv
+   ```
+3. Install dependencies:
+   ```
+   uv sync
+   ```
+4. Run with, e.g.:
+   ```
+   uv run python examples/simple_plot.py
+   ```
+5. If you want to use it in another (local) project:
+   ```
+   uv pip install -e .
+   ```
+
 ## Other libraries
 
 Check out [tueplots](https://github.com/pnkraemer/tueplots) if you want a more complex
