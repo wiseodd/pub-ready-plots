@@ -107,6 +107,12 @@ See [here](#all-available-options) for available options for `get_context()`!
 > to avoid the generic blue-orange Matplotlib colors.
 > Distinguish your plots from others!
 
+## Supported Layouts
+
+ICML, NeurIPS, ICLR, AISTATS, UAI, ProbML, JMLR, TMLR, A0 Poster (Landscape), A1 Poster (Portrait), 16:9 Beamer Slides, 16:9 Tuoying (Typst) Slides.
+
+See: [this file](https://github.com/wiseodd/pub-ready-plots/blob/b7d65a9edc846335b7534680ad731d872a175681/pub_ready_plots/styles.py#L14).
+
 ## Advanced usages
 
 ### Creating a figure with multiple subplots
