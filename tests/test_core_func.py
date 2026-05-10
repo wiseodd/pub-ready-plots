@@ -82,7 +82,7 @@ def test_double_column(layout: prp.Layout) -> None:
 
 @pytest.mark.parametrize("layout", LAYOUTS)
 def test_no_type3_fonts(layout: prp.Layout, tmp_path: Path) -> None:
-    FNAME = "temp.pdf"
+    FNAME = tmp_path / "temp.pdf"
 
     with prp.get_context(
         width_frac=0.5,
