@@ -1,6 +1,6 @@
 [project]
 name = "pub-ready-plots"
-version = "1.4"
+version = "1.5"
 description = "Easy publication-ready matplotlib plots for ML papers and posters."
 authors = [{ name = "Agustinus Kristiadi", email = "agustinus@kristia.de" }]
 classifiers = [
@@ -14,11 +14,11 @@ readme = "README.md"
 license = { text = "MIT" }
 
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["uv_build>=0.11.12,<0.12"]
+build-backend = "uv_build"
 
-[tool.pdm]
-distribution = true
+[tool.uv.build-backend]
+module-root = ""
 
 [dependency-groups]
 dev = [
