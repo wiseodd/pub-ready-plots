@@ -11,3 +11,9 @@ mypy:
 lint:
 	make ruff
 	make mypy
+
+build:
+	uv build
+
+publish:
+	uv publish
