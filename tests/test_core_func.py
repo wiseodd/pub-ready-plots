@@ -1,6 +1,9 @@
+import subprocess
+from pathlib import Path
 from typing import Sequence
 
 import matplotlib as plt
+import numpy as np
 import pytest
 
 import pub_ready_plots as prp
@@ -75,3 +78,23 @@ def test_double_column(layout: prp.Layout) -> None:
             _ = prp.get_mpl_rcParams(
                 width_frac=1, height_frac=0.1, layout=layout, single_col=True
             )
+
+
+@pytest.mark.parametrize("layout", LAYOUTS)
+def test_no_type3_fonts(layout: prp.Layout, tmp_path: Path) -> None:
+    FNAME = "temp.pdf"
+
+    with prp.get_context(
+        width_frac=0.5,
+        height_frac=0.15,
+        layout=layout,
+    ) as (fig, ax):
+        x = np.linspace(-1, 1)
+        fx = np.sin(x)
+        ax.plot(x, fx)
+        fig.savefig(FNAME)
+
+    result = subprocess.run(
+        ["pdffonts", str(FNAME)], capture_output=True, text=True, check=True
+    )
+    assert "Type 3" not in result.stdout

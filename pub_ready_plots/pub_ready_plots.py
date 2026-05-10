@@ -133,6 +133,7 @@ def get_mpl_rcParams(
         "ytick.major.size": format.tick_size,
         "xtick.major.width": format.tick_width,
         "ytick.major.width": format.tick_width,
+        "pdf.fonttype": 42,
     }
 
     w = width_frac * (format.col_width if single_col else format.text_width)

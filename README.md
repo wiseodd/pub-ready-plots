@@ -1,4 +1,4 @@
-# Agustinus' _Very_ Opiniated Publication-Ready Plotting Library
+# A _Very_ Opiniated Publication-Ready Plotting Library
 
 <div align="center">
 
@@ -18,7 +18,7 @@ advocate for the latter ([proof](https://agustinus.kristia.de/blog/plotting/)). 
 
 > [!IMPORTANT]
 > Here's what I use now for all my publication needs. This library is designed to be
-> _*very*_ opiniated. Beauty is in the eye of the beholder. Also, it is _very_ simple,
+> **very** opiniated. Beauty is in the eye of the beholder. Also, it is _very_ simple,
 > just a single file and that's it.
 
 > [!NOTE]
