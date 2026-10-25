@@ -1,10 +1,10 @@
-import subprocess
 from pathlib import Path
 from typing import Sequence
 
 import matplotlib as plt
 import numpy as np
 import pytest
+from pypdf import PdfReader
 
 import pub_ready_plots as prp
 
@@ -94,7 +94,32 @@ def test_no_type3_fonts(layout: prp.Layout, tmp_path: Path) -> None:
         ax.plot(x, fx)
         fig.savefig(FNAME)
 
-    result = subprocess.run(
-        ["pdffonts", str(FNAME)], capture_output=True, text=True, check=True
-    )
-    assert "Type 3" not in result.stdout
+    font_subtypes = [
+        font.get_object()["/Subtype"]
+        for page in PdfReader(FNAME).pages
+        for font in page["/Resources"]["/Font"].values()
+    ]
+    assert font_subtypes
+    assert "/Type3" not in font_subtypes
+
+
+SANS_LAYOUTS: Sequence[prp.Layout] = [
+    prp.Layout.POSTER_LANDSCAPE,
+    prp.Layout.POSTER_PORTRAIT,
+    prp.Layout.SLIDES_169,
+    prp.Layout.SLIDES_TUOYING_169,
+]
+
+
+@pytest.mark.parametrize("layout", SANS_LAYOUTS)
+def test_sans_serif_layouts(layout: prp.Layout) -> None:
+    rc_params, _, _ = prp.get_mpl_rcParams(layout=layout)
+    assert rc_params["font.family"] == "sans-serif"
+    assert rc_params["mathtext.fontset"] == "stixsans"
+
+
+@pytest.mark.parametrize("layout", [x for x in LAYOUTS if x not in SANS_LAYOUTS])
+def test_serif_layouts(layout: prp.Layout) -> None:
+    rc_params, _, _ = prp.get_mpl_rcParams(layout=layout)
+    assert rc_params["font.family"] == "serif"
+    assert rc_params["mathtext.fontset"] == "cm"

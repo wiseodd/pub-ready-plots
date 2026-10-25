@@ -39,9 +39,9 @@ make lint               # ruff + mypy
 uv run python examples/simple_plot.py
 ```
 
-`tests/test_core_func.py::test_no_type3_fonts` shells out to `pdffonts`, so it needs
-poppler-utils installed. CI (on pull requests) runs pytest with coverage, `ruff format --check`,
-`ruff check`, and mypy. All four must pass.
+All test dependencies are in the `dev` group in `pyproject.toml` (e.g. `pypdf` for the Type 3
+font check), so `uv sync` is enough and no system packages are needed. CI (on pull requests)
+runs pytest with coverage, `ruff format --check`, `ruff check`, and mypy. All four must pass.
 
 ## Conventions
 
