@@ -22,7 +22,7 @@ class Layout(Enum):
     POSTER_LANDSCAPE = "poster-landscape"
     POSTER_PORTRAIT = "poster-portrait"
     SLIDES_169 = "slides-169"
-    SLIDES_TUOYING_169 = "tuoying-169"
+    SLIDES_TUOYING_169 = "slides-tuoying-169"
 
 
 @dataclass
