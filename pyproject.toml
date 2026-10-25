@@ -1,12 +1,15 @@
 [project]
 name = "pub-ready-plots"
-version = "1.5"
+version = "1.6"
 description = "Easy publication-ready matplotlib plots for ML papers and posters."
 authors = [{ name = "Agustinus Kristiadi", email = "agustinus@kristia.de" }]
 classifiers = [
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
 requires-python = ">=3.11"
 dependencies = ["matplotlib>=3.10", "numpy>=2.3", "pandas>=2.3"]
