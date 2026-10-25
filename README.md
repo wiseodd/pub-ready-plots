@@ -157,7 +157,9 @@ Then all we have to do is the following:
 import pub_ready_plots as prp
 
 with prp.get_context(
-    layout=prp.Layout.NEURIPS, width_frac=0.4, height_frac=0.15,
+    layout=prp.Layout.NEURIPS,
+    width_frac=0.4,
+    height_frac=0.15,
 ) as (fig, axs):
     # Your plot here!
     ...

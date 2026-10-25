@@ -22,7 +22,7 @@ class Layout(Enum):
     POSTER_LANDSCAPE = "poster-landscape"
     POSTER_PORTRAIT = "poster-portrait"
     SLIDES_169 = "slides-169"
-    TUOYING_169 = "tuoying-169"
+    SLIDES_TUOYING_169 = "slides-tuoying-169"
 
 
 @dataclass
@@ -166,7 +166,7 @@ PAPER_FORMATS = {
         tick_width=0.5,
     ),
     # Typst Tuoying slides
-    Layout.TUOYING_169: Style(
+    Layout.SLIDES_TUOYING_169: Style(
         text_width=11.693,
         col_width=11.693,
         text_height=6.577,
