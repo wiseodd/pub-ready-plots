@@ -1,5 +1,6 @@
+import warnings
 from contextlib import contextmanager
-from typing import Any, Generator, Union
+from typing import Any, Generator, Hashable, Optional, Union
 
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
@@ -18,9 +19,12 @@ def get_context(
     single_col: bool = False,
     nrows: int = 1,
     ncols: int = 1,
+    mosaic: Optional[Union[str, list[Any]]] = None,
     override_rc_params: dict[str, Any] = dict(),
     **kwargs: Any,
-) -> Generator[tuple[Figure, Union[Axes, ndarray[Any, Any]]], None, None]:
+) -> Generator[
+    tuple[Figure, Union[Axes, ndarray[Any, Any], dict[Hashable, Axes]]], None, None
+]:
     rc_params, fig_width_in, fig_height_in = get_mpl_rcParams(
         layout=layout,
         width_frac=width_frac,
@@ -29,8 +33,17 @@ def get_context(
     )
     rc_params.update(override_rc_params)
 
+    if mosaic is not None and (nrows != 1 or ncols != 1):
+        warnings.warn("`nrows` and `ncols` are ignored when `mosaic` is given.")
+
+    axs: Union[Axes, ndarray[Any, Any], dict[Hashable, Axes]]
+
     with plt.rc_context(rc_params):
-        fig, axs = plt.subplots(nrows, ncols, constrained_layout=True, **kwargs)
+        if mosaic is None:
+            fig, axs = plt.subplots(nrows, ncols, constrained_layout=True, **kwargs)
+        else:
+            fig, axs = plt.subplot_mosaic(mosaic, constrained_layout=True, **kwargs)
+
         fig.set_size_inches(fig_width_in, fig_height_in)
         yield (fig, axs)
 
