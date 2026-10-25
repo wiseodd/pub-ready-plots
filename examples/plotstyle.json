@@ -1,0 +1,9 @@
+{
+  "font.family": "sans-serif",
+  "font.sans-serif": ["cmss10"],
+  "mathtext.fontset": "cm",
+  "axes.formatter.use_mathtext": false,
+  "legend.fancybox": false,
+  "legend.edgecolor": "k",
+  "legend.framealpha": 1
+}

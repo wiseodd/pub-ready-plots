@@ -241,6 +241,49 @@ with prp.get_context(
     fig.savefig("filename.pdf")
 ```
 
+### Sharing a style file across many scripts
+
+If a project has many plotting scripts (I have one per figure in my lecture slides),
+put your `rcParams` tweaks in one JSON file and pass them via `override_rc_params`.
+E.g., `plotstyle.json`:
+
+```json
+{
+  "font.family": "sans-serif",
+  "font.sans-serif": ["cmss10"],
+  "mathtext.fontset": "cm",
+  "axes.formatter.use_mathtext": false,
+  "legend.fancybox": false,
+  "legend.edgecolor": "k",
+  "legend.framealpha": 1
+}
+```
+
+Then in each script:
+
+```python
+import json
+
+import pub_ready_plots as prp
+
+with open("plotstyle.json", "r") as f:
+    rc_params = json.load(f)
+
+with prp.get_context(
+    layout=prp.Layout.TUOYING_169,
+    width_frac=0.382,
+    height_frac=0.8,
+    override_rc_params=rc_params,
+) as (fig, ax):
+    ...
+    fig.savefig("myplot.pdf")
+```
+
+`override_rc_params` is applied after the layout's rcParams, so the JSON values take
+precedence. To restyle all figures, edit the file and rerun the scripts.
+See [`examples/style_file.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/style_file.py)
+and [`examples/plotstyle.json`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/plotstyle.json).
+
 ### Using your own styles
 
 Two options:
