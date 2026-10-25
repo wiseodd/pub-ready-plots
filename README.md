@@ -147,6 +147,24 @@ with prp.get_context(
     fig.savefig("subplots.pdf")
 ```
 
+### Subplots that span rows or columns
+
+Pass `mosaic` to get a layout from
+[`plt.subplot_mosaic`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot_mosaic.html).
+Then `axs` is a dict keyed by the labels. `nrows` and `ncols` are ignored (with a
+warning) when `mosaic` is set.
+
+```python
+with prp.get_context(layout=prp.Layout.NEURIPS, mosaic="AAB;CCB") as (fig, axs):
+    axs["A"].plot(x, np.sin(x))  # top left, two columns wide
+    axs["B"].plot(x, np.tanh(x))  # right, two rows tall
+    axs["C"].plot(x, np.cos(x))  # bottom left, two columns wide
+    fig.savefig("mosaic.pdf")
+```
+
+This also covers what `plt.subplot2grid` does. See the full example in
+[`examples/mosaic.py`](https://github.com/wiseodd/pub-ready-plots/blob/master/examples/mosaic.py).
+
 ### Creating plots for `\wrapfigure`
 
 Say we want to have an inline figure of size `0.4\textwidth` and
@@ -233,6 +251,7 @@ with prp.get_context(
     single_col=False,  # only works for the ICML, UAI, AISTATS layouts
     nrows=1,  # depending on your subplots, default = 1
     ncols=2,  # depending on your subplots, default = 1
+    mosaic=None,  # e.g. "AAB;CCB" for `plt.subplot_mosaic`, overrides nrows & ncols
     override_rc_params={"lines.linewidth": 4.123},  # Overriding rcParams
     sharey=True,  # Additional keyword args for `plt.subplots`
 ) as (fig, axs):
